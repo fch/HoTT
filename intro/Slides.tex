@@ -1,0 +1,364 @@
+\documentclass[11pt,aspectratio=169,notheorems]{beamer}
+
+\include{include/packages}
+\include{include/macros}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\Huge{Homotopietypentheorie}}
+\subtitle{Oberseminar Theoretische Informatik}
+\date{DATUM}
+\author{Florian Chudigiewitsch}
+\institute{Institut für Theoretische Informatik}
+\titlegraphic{\includegraphics[height=10mm]{images/thi}\hspace{92mm}\includegraphics[height=10mm]{images/logo_luh}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+\begin{frame}[noframenumbering]
+    \maketitle
+    \thispagestyle{empty}
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[above left=1cm and .8cm of current page.south east] {\includegraphics[width=7.5cm]{images/welfenschloss}};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[noframenumbering]{Themen}
+    \thispagestyle{empty}
+    \Large
+    \begin{itemize}
+        \item Geschichtliches
+        \item Grundlagen der Typentheorie
+        \item Homotopietypentheorie
+        \item Anwendungen \& Aktuelle Forschungsfragen
+    \end{itemize}
+    
+\end{frame}
+
+\sectionslide{Geschichtliches}
+
+\begin{frame}{Geschichtliches}
+    \begin{tikzpicture}
+        \draw[line width=7pt, maincolorMedium] (0,0) -- (15,0);
+        \node[starburst, draw, minimum width=2cm, minimum height=2cm,red,fill=orange,line width=1.5pt]
+        {};
+        \draw[->, line width=2pt] (0,-2) -- (0,-1);
+        \draw (0, -2.5) node {Russellsche Antinomie};
+        \draw (0, 1.2) node {1901};
+
+
+        \uncover<2->{\fill (3.8, -0.2) rectangle (4.2, 0.2);
+        \draw[-, line width=2pt] (4,-3) -- (4,0);
+        \draw (4, -3.5) node {Dependent Type Theory};
+        \draw (4, 1.2) node {1934};}
+
+        
+        \uncover<3->{\fill (7.8, -0.2) rectangle (8.2, 0.2);
+        \draw[-, line width=2pt] (8,-2) -- (8,0);
+        \draw (8, -2.5) node {\href{https://www.math.ias.edu/~vladimir/Site3/Univalent_Foundations_files/Hlambda_short_current.pdf}{Voevodsky Paper}};
+        \draw (8, 1.2) node {2006};}
+
+        
+        \uncover<4->{\fill (11.8, -0.2) rectangle (12.2, 0.2);
+        \draw[-, line width=2pt] (12,-4) -- (12,0);
+        \draw (8, -4.5) node {Special Year on Univalent Foundations of Mathematics};
+        \draw (12, 1.2) node {2012};}
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Quellen und Referenzen}
+    \begin{columns}[T] % align columns
+        \begin{column}{.30\textwidth}
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{images/cover-web}
+            \tiny{\href{https://homotopytypetheory.org/book/}{https://homotopytypetheory.org/book/}}
+        \end{center}
+        \end{column}%
+        \hfill%
+        \begin{column}{.30\textwidth}
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{images/computerphile}\\[2pt]
+            Computerphile (Youtube)
+            \tiny{
+            \begin{itemize}
+                \item \href{https://www.youtube.com/watch?v=qT8NyyRgLDQ}{Type Theory}
+                
+                \item \href{https://www.youtube.com/watch?v=SknxggwRPzU}{Propositions as Types}
+                
+                \item \href{https://www.youtube.com/watch?v=v5a5BYZwRx8}{Voevodsky}
+                
+                \item \href{https://www.youtube.com/watch?v=Ft8R3-kPDdk}{Homotopy Type Theory}
+            \end{itemize}}
+        \end{center}
+        \end{column}%
+        \hfill%
+        \begin{column}{.30\textwidth}
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{images/riehl}\\[2pt]
+            Emily Riehl
+            \tiny{
+            \begin{itemize}
+                \item \href{http://www.math.jhu.edu/~eriehl/berkeley-logic.mp4}{Video}
+                \item \href{http://www.math.jhu.edu/~eriehl/berkeley-logic.pdf}{Slides}
+            \end{itemize}}
+        \end{center}
+        \end{column}%
+    \end{columns}
+\end{frame}
+
+\sectionslide{Grundlagen der Typentheorie}
+
+\begin{frame}{Konstruktivität}
+    \begin{itemize}
+        \item Law of excluded middle (LEM) wichtiges Axiom in der klassischen Mathematik
+        \item $\forall \varphi(\varphi \vee \neg \varphi)$
+        \item Ermöglicht Widerspruchsbeweise
+        \item Konstruktive Logik verzichtet auf LEM
+        \item Dadurch wird durch einen Beweis immer ein \glqq{}Witness\grqq{} erzeugt
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundaussagen\grqq{}}
+    Die vier Grundformen (\glqq{}judgements\grqq{}) der \glqq{}wohlgeformten Formeln\grqq{} der Dependent Type Theory sind:
+    \begin{center}
+        \begin{tabular}{l l l}
+            Formel & Interpretation & Beispiel\\ \hline
+            $\Context{\Gamma} \vdash \Type{A}$ type & \glqq{}\Type{A} ist ein Typ\grqq{}&\Type{\N} type\\
+            $\Context{\Gamma} \vdash \Term{a} : \Type{A}$ & \glqq{}\Term{a} ist ein Term vom Typ \Type{A}\grqq{}&$\Term{1} : \Type{\N}$\\
+            $\Context{\Gamma}, \Term{x} : \Type{A} \vdash \Type{B(x)}$ type & \glqq{}\Type{B(x)} ist eine Typfamilie über \Type{A}\grqq{}&$\Term{n} : \Type{\N} \vdash \Type{\R^n}$ type\\
+            $\Context{\Gamma}, \Term{x} : \Type{A} \vdash \Term{b(x)} : \Type{B(x)}$ & \glqq{}\Term{b(x)} ist eine Termfamilie\grqq{}&$\Term{n} : \Type{\N} \vdash \Term{\vec{0}} : \Type{\R^n}$\\
+        \end{tabular}
+    \end{center}
+    \Context{\Gamma} ist der \emph{Kontext}, der die Typen aller vorkommenen Variablen deklariert.
+
+    \emph{Universum:} Typ, dessen Elemente Typen sind. Bilden Hierarchie
+    \[\Universe{0} : \Universe{1} : \Universe{2} : \cdots\] 
+\end{frame}
+
+
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelarten\grqq{} I}
+    
+    \begin{itemize}
+        \item Name: $x$-formation rules
+
+        \item Beschreibung: Haben wir Typen \Type{A} und \Type{B} gegeben, gibt es einen Produkttypen \Type{A\times B}.
+
+        \item Formal:
+        \begin{displaymath}
+            \prftree[r]{}
+                {\Context{\Gamma} \vdash \Type{A} \text{ type}}
+                {\Context{\Gamma} \vdash \Type{B} \text{ type}}
+                {\Context{\Gamma} \vdash \Type{A\times B} \text{ type}}
+        \end{displaymath}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelarten\grqq{} II}
+    
+    \begin{itemize}
+        \item Name: $x$-introduction rules
+
+        \item Beschreibung: Haben wir Terme $\Term{a} : \Type{A}$ und $\Term{b} : \Type{B}$ gegeben, gibt es einen Term $\Term{(a, b)} : \Type{A\times B}$.
+
+        \item Formal: 
+        \begin{displaymath}
+            \prftree[r]{}
+                {\Context{\Gamma} \vdash \Term{a} : \Type{A}}
+                {\Context{\Gamma} \vdash \Term{b} : \Type{B}}
+                {\Context{\Gamma} \vdash \Term{(a, b)} : \Type{A\times B}}
+        \end{displaymath}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelarten\grqq{} III}
+    \begin{itemize}
+        \item Name: $x$-elimination rules
+        \item Beschreibung: Haben wir einen Term $\Term{p} : \Type{A\times B}$ gegeben, gibt es Terme $\Term{\text{pr}_1(p)} : \Type{A}$ und $\Term{\text{pr}_2(p)} : \Type{B}$.
+        \item Formal: 
+
+        \begin{columns}[T] % align columns
+            \begin{column}{.30\textwidth}
+                \begin{displaymath}
+                    \prftree[r]{}
+                        {\Context{\Gamma} \vdash \Term{p} : \Type{A\times B}}
+                        {\Context{\Gamma} \vdash \Term{\text{pr}_1(p)} : \Type{A}}
+                \end{displaymath}
+            \end{column}%
+            \begin{column}{.30\textwidth}
+                \begin{displaymath}
+                    \prftree[r]{}
+                        {\Context{\Gamma} \vdash \Term{p} : \Type{A\times B}}
+                        {\Context{\Gamma} \vdash \Term{\text{pr}_2(p)} : \Type{B}}
+                \end{displaymath}
+            \end{column}%
+        \end{columns}
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Weiterhin:} \emph{Judgemental equality ($\alpha$-conversion)}, \emph{Computation rules ($\beta$-reduction):} verbinden introduction und elimination rules, optionales \emph{uniqueness principle ($\eta$-expansion)}.
+\end{frame}
+
+\begin{frame}{Funktionstypen}
+    \begin{itemize}
+        \item $\rightarrow$-formation: Haben wir Typen \Type{A} und \Type{B} gegeben, gibt es einen Typen \Type{A\rightarrow B}.
+        \item $\rightarrow$-introduction: Haben wir im Kontext eines Terms $\Term{x} : \Type{A}$ einen Term $\Term{b(x)} : B$ gegeben, gibt es einen Term $\Term{\lambda x.b(x)} : \Type{A\rightarrow B}$. Formal:
+        \begin{displaymath}
+            \prftree[r]{}
+                {\Context{\Gamma}, \Term{x} : \Type{A} \vdash \Term{b(x)} : \Type{B}}
+                {\Context{\Gamma} \vdash \Term{\lambda x.b(x)} : \Type{A\rightarrow B}}
+        \end{displaymath}
+        \item $\rightarrow$-elimination: Haben wir Terme $\Term{f} : \Type{A\rightarrow B}$ und $\Term{a} : \Type{A}$ gegeben, gibt es einen Term $\Term{f(a)} : \Type{B}$.
+        \item Zwei computation rules.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Propositions as Types}
+    \begin{itemize}
+        \item Aussagen werden durch Typen repräsentiert
+        \item Man beweist sie indem man einen Term vom entsprechenden Typ erzeugt
+        \item TODO
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Propositions as Types: Beispiel}
+    \begin{example}{}{}
+        \textbf{Aussage:} Für beliebige Typen \Type{P} und \Type{Q} gibt es den Term \[\Term{\text{modus-ponens}} : \Type{P\times (P\rightarrow Q) \rightarrow Q}.\]
+
+        \textbf{Beweis:} Mit $\rightarrow$-introduction aus Term $\Term{x} : \Type{P\times (P\rightarrow Q)}$ einen Term aus \Type{Q} generieren. $x$-elimination liefert uns $\Term{\text{pr}_1(x)} : \Type{P}$ und $\Term{\text{pr}_2(x)} : \Type{P\rightarrow Q}$.\\$\rightarrow$-elimination liefert $\Term{(\text{pr}_2(x))(\text{pr}_1(x))} : \Type{Q}$.
+
+        Somit: $\Term{\text{modus-ponens}} :\equiv \Term{\lambda x.(\text{pr}_2(x))(\text{pr}_1(x))}$.\hfill{\color{maincolor}$\blacksquare$}
+    \end{example}
+    \emph{Curry-Howard-Isomorphismus:} Ein Beweis korrespondiert zu einem Computerprogramm, welches einen Term vom Typ der Aussage zurückgibt.
+\end{frame}
+
+\begin{frame}{Gleichheit als Identitätstyp}
+    Mathematische Gleichheit wird über Identitätstypen ausgedrückt.
+
+    \begin{itemize}
+        \item $=$-formation: Haben wir einen Typ \Type{A} und zwei Terme $\Term{x},\Term{y} : \Type{A}$ gegeben, gibt es einen Typ $\Type{x =_{A} y}$.
+        \item $=$-introduction: Haben wir einen Term $\Term{x}:\Type{A}$ gegeben, so gibt es einen Term $\Term{\text{refl}_x} : \Type{x =_{A} x}$.
+    \end{itemize}
+    Elimination rule via path induction:
+    
+    Haben wir eine Typfamilie $\Context{\Gamma}, \Term{x}, \Term{y} : \Type{A}, \Term{p} : \Type{x =_{A} y} \vdash \Type{B(x, y, p)}$ gegeben und wollen einen Term von \Type{B(x, y, p)} konstruieren, reicht es anzunehmen, dass \Term{y} \Term{x} und \Term{p} \Term{\text{refl}_x} ist.
+\end{frame}
+
+\sectionslide{Homotopietypentheorie}
+
+\begin{frame}{Path induction homotopisch interpretiert}
+    \begin{columns}[T] % align columns
+        \begin{column}{.60\textwidth}
+            \begin{itemize}
+                \item Typ \Type{A} $\leftrightsquigarrow$ Raum \Type{A}
+                \item Term $\Term{a} : \Type{A}$ $\leftrightsquigarrow$ Punkt \Term{a} in \Type{A}
+                \item Term $\Term{p} : \Type{x =_{A} y}$ $\leftrightsquigarrow$ Pfad \Term{p} von \Term{x} nach \Term{y} in \Type{A}
+                \item Term $\Term{p} : \Type{p =_{x =_{A} y} a}$ $\leftrightsquigarrow$ Homotopie \Term{h} von \Term{p} nach \Term{q} in \Type{A}
+            \end{itemize}
+        \end{column}%
+        \begin{column}{.30\textwidth}
+        \end{column}%
+    \end{columns}~\\[2em]
+    \begin{itemize}
+        \item Symmetrie und Transitivität wird als Umkehrung und Komposition von Pfaden, Homotopien, höheren Homotopien... interpretiert.
+        \item \href{https://arxiv.org/abs/0812.0298}{van den Berg/Garner} und \href{http://peterlefanulumsdaine.com/research/Lumsdaine-2010-Thesis.pdf}{Lumsdaine}: Typen haben die Struktur eines $\infty$-Gruppoiden
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{\glqq{}Indiscernibility of identicals\grqq{}}
+    \textbf{Beantwortete offene Frage der Beweistheorie:}
+    \begin{itemize}
+        \item \glqq{}Indiscernibility of identicals\grqq{}: Wenn zwei Beweise $p$ und $q$ beide $A$ zeigen, kann man dann immer $p = q$ zeigen?
+        \item Nein!
+    \end{itemize}
+    \vspace{2cm}
+\end{frame}
+
+\begin{frame}{Weitere Typen -- mit homotopischer Interpretation}
+    
+    \begin{columns}[T] % align columns
+        \begin{column}{.60\textwidth}
+            \begin{itemize}
+                \item Typfamilie $\Term{x} : \Type{A} \vdash \Type{B(x)}$ type $\leftrightsquigarrow$ Faserung über \Type{A}
+                \item Dependent sum Typ \Type{\sum_{x:A} B(x)} $\leftrightsquigarrow$ Totalraum einer Faserung
+                
+                Beispiel: \[\Type{\text{Magma}} :\equiv \Type{\sum_{A:\Universe{}} (A\rightarrow A \rightarrow A)}\]
+            \end{itemize}
+        \end{column}%
+        \begin{column}{.30\textwidth}
+        \end{column}%
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Weitere Typen -- mit homotopischer Interpretation}
+    
+    \begin{columns}[T] % align columns
+        \begin{column}{.60\textwidth}
+            \begin{itemize}
+                \item Typfamilie $\Term{x} : \Type{A} \vdash \Type{B(x)}$ type $\leftrightsquigarrow$ Faserung über \Type{A}
+                \item Dependent function Typ \Type{\prod_{x:A}B(x)} $\leftrightsquigarrow$ Raum der Sektionen
+                
+                Beispiel: \[\Term{\text{swap}}:\Type{\prod_{A:\Universe{}}\prod_{B:\Universe{}}\prod_{C:\Universe{}}(A\rightarrow B\rightarrow C)\rightarrow (B\rightarrow A\rightarrow C)}\]
+            \end{itemize}
+        \end{column}%
+        \begin{column}{.30\textwidth}
+        \end{column}%
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Zusammenziehbare Typen}
+    \begin{definition}{Zusammenziehbare Typen}{}
+        Es gibt einen eindeutigen Term vom Typ \Type{A} gdw.
+        \[\Type{\sum_{a:A}\prod_{x:A} a=_{A}x}\]
+        bewohnt ist, bzw. wenn der Raum \Type{A} \emph{zusammenziehbar} ist.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Typenäquivalenz}
+    \begin{definition}{Typenäquivalenz}{}
+        Zwei Typen \Type{A} und \Type{B} sind \emph{äquivalent}, wenn der Typ
+        \[\Type{A\simeq B} :\equiv \Type{\sum_{f:A\rightarrow B}\left(\sum_{g:B\rightarrow A}\prod_{a:A}g(f(a))=_{A}a\right)\times\left(\sum_{h:B\rightarrow A}\prod_{b:B}f(h(b))=_{B}b\right)}\]
+        bewohnt ist.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Univalenzaxiom}
+    Man kann leicht beweisen, dass
+    \[\Type{(A = B) \rightarrow (A \simeq B)}.\]
+    \begin{definition}{Univalenzaxiom (Voevodsky)}{}
+        \[\Type{(A = B) \simeq (A\simeq B)}\]
+    \end{definition}
+\end{frame}
+
+\sectionslide{Anwendungen \& Aktuelle Forschungsfragen}
+
+\begin{frame}{Anwendungen}
+    \begin{itemize}
+        \item Homotopietheorie
+        \item Kategorientheorie
+        \item Theorembeweiser
+        \item Programmverifikation
+        \item Funktionale Progammierung
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Aktuelle Forschungsfragen}
+    \begin{itemize}
+        \item Informelle Typentheorie
+        \item Konstruktivität des Univalenzaxioms
+        \item Komplexitätstheorie?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Quellenverweise}
+    \printbibliography[heading=none]
+\end{frame}
+    
+
+\begin{frame}[standout]
+    \Huge Danke!\\[2em]
+    Fragen?
+\end{frame}
+
+\end{document}

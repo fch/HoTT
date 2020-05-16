@@ -1,0 +1,234 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grundlagen Farben
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{maincolor}{rgb}{0,0.31,0.62}
+\colorlet{maincolorDark}{maincolor!80!black}
+\colorlet{maincolorMedium}{maincolor!50!white}
+\colorlet{maincolorLight}{maincolor!20!white}
+\colorlet{maincolorExtraLight}{maincolor!10!white}
+\colorlet{maincolorExtraExtraLight}{maincolor!5!white}
+
+\hypersetup{
+    colorlinks,
+    citecolor=maincolor,
+    filecolor=black,
+    linkcolor=maincolorDark,
+    urlcolor=maincolorDark
+}
+
+%% Typentheorie Farben
+\definecolor{typecolor}{rgb}{0.85,0,0}
+\definecolor{termcolor}{rgb}{0.8,0.6,0}
+\definecolor{contextcolor}{rgb}{0.5,0.5,0.5}
+\definecolor{universecolor}{rgb}{0.8,0.3,0.8}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Komplexitätsklassen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\class}[1]{\ensuremath{\mathsf{#1}}\xspace}
+
+%% Maße
+\newcommand{\TIME}{\class{TIME}}
+\newcommand{\SPACE}{\class{SPACE}}
+\newcommand{\NTIME}{\class{NTIME}}
+\newcommand{\NSPACE}{\class{NSPACE}}
+
+%% Polynomial
+\newcommand{\DP}{\class{P}}
+\newcommand{\NP}{\class{NP}}
+
+%% PH
+\newcommand{\PH}{\class{PH}}
+
+%% Probabilistic
+\newcommand{\PP}{\class{PP}}
+\newcommand{\ZPP}{\class{ZPP}}
+\newcommand{\BPP}{\class{BPP}}
+\newcommand{\RP}{\class{RP}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Typentheorie
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Type}[1]{{\color{typecolor}\ensuremath{#1}}\xspace}
+\newcommand{\Term}[1]{{\color{termcolor}\ensuremath{#1}}\xspace}
+\newcommand{\Context}[1]{{\color{contextcolor}\ensuremath{#1}}\xspace}
+\newcommand{\Universe}[1]{{\color{universecolor}\ensuremath{\mathcal{U}_{#1}}}\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Typografie
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Math und Text bold
+\newcommand\allbold[1]{{\boldmath\textbf{#1}}}
+
+
+% Theorem Environments
+\tcbuselibrary{theorems, skins}
+
+\makeatletter
+\newtcbtheorem[]{definition}{Definition}{
+  enhanced,
+  colback=maincolorExtraExtraLight,
+  coltitle=black,
+  colframe=maincolorMedium,
+  fonttitle=\large\bfseries,
+  description delimiters parenthesis,
+  sharpish corners,
+  attach boxed title to top,
+  boxed title style={colframe=maincolorMedium, colback=maincolorLight, sharpish corners, boxrule=0.5mm},
+  toptitle=0.7mm,
+  enlarge top by=0.4cm,
+  bottomtitle=0.5mm}{def}
+
+\newtcbtheorem[use counter from=definition]{theorem}{Satz}{
+  enhanced,
+  colback=maincolorExtraExtraLight,
+  coltitle=black,
+  colframe=maincolorMedium,
+  fonttitle=\large\bfseries,
+  description delimiters parenthesis,
+  sharpish corners,
+  attach boxed title to top,
+  boxed title style={colframe=maincolorMedium, colback=maincolorLight, sharpish corners, boxrule=0.5mm},
+  toptitle=0.7mm,
+  enlarge top by=0.4cm,
+  bottomtitle=0.7mm}{thm}
+
+\newtcbtheorem[use counter from=definition]{example}{Beispiel}{
+  enhanced,
+  coltitle=maincolor,
+  colback=maincolorExtraExtraLight,
+  colframe=maincolorExtraLight,
+  fonttitle=\large\bfseries,
+  description delimiters parenthesis,
+  sharpish corners,
+  detach title,
+  before upper={\tcbtitle\par},
+  enlarge top by=0.4cm}{example}
+\makeatother
+
+\renewcommand\qedsymbol{\color{maincolor}$\blacksquare$}
+
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Algorithmen und Code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Kommentare
+\renewcommand\algorithmiccomment[1]{%
+  \allbold{\color{maincolorDark}\hfill$\triangleright$\ #1}
+}
+
+% Keywords
+\newcommand\Accept{\textbf{accept}}
+\newcommand\Reject{\textbf{reject}}
+
+\algnewcommand\algorithmicOutput{\textbf{Output:}}
+\algnewcommand\Output{\item[\algorithmicOutput]}
+\algnewcommand\algorithmicInput{\textbf{Input:}}
+\algnewcommand\Input{\item[\algorithmicInput]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme[progressbar=frametitle]{metropolis}
+\setbeamercolor{frametitle}{bg=maincolor}
+\setbeamerfont{frametitle}{size=\Large}
+\usefonttheme{serif}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Special Slides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section Slide
+\newcommand{\sectionslide}[1]{\begin{frame}[noframenumbering]
+    \thispagestyle{empty}
+    \begin{center}
+    \Huge #1
+    \end{center}
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[below right=0cm and 0cm of current page.north west] (tr1_1) {};
+        \node[below right=3cm and 0cm of current page.north west] (tr1_2) {};
+        \node[below right=0cm and 3cm of current page.north west] (tr1_3) {};
+
+        \fill[fill=maincolorMedium] (tr1_1.center)--(tr1_2.center)--(tr1_3.center);
+
+        \node[above right=0cm and 0cm of current page.south west] (tr2_1) {};
+        \node[above right=0cm and 3cm of current page.south west] (tr2_2) {};
+        \node[above right=3cm and 0cm of current page.south west] (tr2_3) {};
+
+        \fill[fill=maincolorMedium] (tr2_1.center)--(tr2_2.center)--(tr2_3.center);
+
+        \node[above left=0cm and 0cm of current page.south east] (tr3_1) {};
+        \node[above left=0cm and 3cm of current page.south east] (tr3_2) {};
+        \node[above left=3cm and 0cm of current page.south east] (tr3_3) {};
+
+        \fill[fill=maincolor] (tr3_1.center)--(tr3_2.center)--(tr3_3.center);
+
+        \node[below left=0cm and 0cm of current page.north east] (tr4_1) {};
+        \node[below left=3cm and 0cm of current page.north east] (tr4_2) {};
+        \node[below left=0cm and 3cm of current page.north east] (tr4_3) {};
+
+        \fill[fill=maincolorMedium] (tr4_1.center)--(tr4_2.center)--(tr4_3.center);
+    \end{tikzpicture}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grafik
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{dateplot}
+
+\usetikzlibrary{mindmap,trees,positioning}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom Symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mengen
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Complex}{\ensuremath{\mathbb{C}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+
+% Danger Symbol
+\newcommand*{\TakeFourierOrnament}[1]{{%
+\fontencoding{U}\fontfamily{futs}\selectfont\char#1}}
+\newcommand*{\danger}{\TakeFourierOrnament{66}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Sonstiges
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Bibliografie
+
+\addbibresource{bibliography.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
