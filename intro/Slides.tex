@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{\Huge{Homotopietypentheorie}}
 \subtitle{Oberseminar Theoretische Informatik}
-\date{DATUM}
+\date{}
 \author{Florian Chudigiewitsch}
 \institute{Institut für Theoretische Informatik}
 \titlegraphic{\includegraphics[height=10mm]{images/thi}\hspace{92mm}\includegraphics[height=10mm]{images/logo_luh}}
@@ -72,8 +72,8 @@
     \begin{columns}[T] % align columns
         \begin{column}{.30\textwidth}
         \begin{center}
-            \includegraphics[width=0.9\textwidth]{images/cover-web}
-            \tiny{\href{https://homotopytypetheory.org/book/}{https://homotopytypetheory.org/book/}}
+            \includegraphics[width=0.9\textwidth]{images/cover-web}\\
+            \tiny{\href{https://homotopytypetheory.org/book/}{https://homotopytypetheory.org/book/}~\cite{hottbook}}
         \end{center}
         \end{column}%
         \hfill%
@@ -113,10 +113,11 @@
 \begin{frame}{Konstruktivität}
     \begin{itemize}
         \item Law of excluded middle (LEM) wichtiges Axiom in der klassischen Mathematik
-        \item $\forall \varphi(\varphi \vee \neg \varphi)$
+        \item $\vdash \varphi \vee \neg \varphi$
         \item Ermöglicht Widerspruchsbeweise
         \item Konstruktive Logik verzichtet auf LEM
         \item Dadurch wird durch einen Beweis immer ein \glqq{}Witness\grqq{} erzeugt
+        \item Keine wirkliche Einschränkung, da man LEM jederzeit als Annahme hinzunehmen kann
     \end{itemize}
 \end{frame}
 
@@ -196,7 +197,7 @@
         \end{columns}
     \end{itemize}
     \vspace{0.5cm}
-    \textbf{Weiterhin:} \emph{Judgemental equality ($\alpha$-conversion)}, \emph{Computation rules ($\beta$-reduction):} verbinden introduction und elimination rules, optionales \emph{uniqueness principle ($\eta$-expansion)}.
+    \textbf{Weiterhin:} \emph{Judgemental equality ($\alpha$-conversion)}, \emph{computation rules ($\beta$-reduction):} verbinden introduction und elimination rules, optionales \emph{uniqueness principle ($\eta$-expansion)}.
 \end{frame}
 
 \begin{frame}{Funktionstypen}
@@ -217,7 +218,9 @@
     \begin{itemize}
         \item Aussagen werden durch Typen repräsentiert
         \item Man beweist sie indem man einen Term vom entsprechenden Typ erzeugt
-        \item TODO
+        \item \[\frac{\text{Beweise}}{\text{Aussagen}} = \frac{\text{Programme}}{\text{Typen}}\]
+        \item Klassisch: $\text{Prop} \leftrightsquigarrow \text{Bool}$, \glqq{}Wahrheit\grqq{}
+        \item Andere Möglichkeit: $\text{Prop} \leftrightsquigarrow \text{Types}$, \glqq{}Zeugnis\grqq{}
     \end{itemize}
 \end{frame}
 
@@ -244,6 +247,21 @@
     Haben wir eine Typfamilie $\Context{\Gamma}, \Term{x}, \Term{y} : \Type{A}, \Term{p} : \Type{x =_{A} y} \vdash \Type{B(x, y, p)}$ gegeben und wollen einen Term von \Type{B(x, y, p)} konstruieren, reicht es anzunehmen, dass \Term{y} \Term{x} und \Term{p} \Term{\text{refl}_x} ist.
 \end{frame}
 
+\begin{frame}{Gleichheit ist eine Äquivalenzrelation}
+    \begin{lemma}{}{}
+        Für beliebige $\Term{x}, \Term{y} : \Type{A}$ gilt $\Type{(x =_A y)\rightarrow (y =_A x)}$.
+    \end{lemma}
+    \begin{proof}
+        Hausaufgabe. $\smiley$
+    \end{proof}
+    \begin{lemma}{}{}
+        Für beliebige $\Term{x}, \Term{y}, \Term{z} : \Type{A}$ gilt $\Type{(x =_A y)\rightarrow ((y =_A z)\rightarrow (x =_A z))}$.
+    \end{lemma}
+    \begin{proof}
+        Hausaufgabe. $\smiley$
+    \end{proof}
+\end{frame}
+
 \sectionslide{Homotopietypentheorie}
 
 \begin{frame}{Path induction homotopisch interpretiert}
@@ -258,10 +276,11 @@
         \end{column}%
         \begin{column}{.30\textwidth}
         \end{column}%
-    \end{columns}~\\[2em]
+    \end{columns}~\\[1em]
     \begin{itemize}
         \item Symmetrie und Transitivität wird als Umkehrung und Komposition von Pfaden, Homotopien, höheren Homotopien... interpretiert.
-        \item \href{https://arxiv.org/abs/0812.0298}{van den Berg/Garner} und \href{http://peterlefanulumsdaine.com/research/Lumsdaine-2010-Thesis.pdf}{Lumsdaine}: Typen haben die Struktur eines $\infty$-Gruppoiden
+        \item \href{https://arxiv.org/abs/0812.0298}{van den Berg/Garner} und \href{http://peterlefanulumsdaine.com/research/Lumsdaine-2010-Thesis.pdf}{Lumsdaine}: Typen haben die Struktur eines schwachen $\infty$-Gruppoiden
+        \item Unterschied: Homotopietheorie analytisch, Homotopietypentheorie synthetisch
     \end{itemize}
 \end{frame}
 
@@ -270,6 +289,7 @@
     \begin{itemize}
         \item \glqq{}Indiscernibility of identicals\grqq{}: Wenn zwei Beweise $p$ und $q$ beide $A$ zeigen, kann man dann immer $p = q$ zeigen?
         \item Nein!
+        \item Homotopie-Äquivalenzklassen von Schleifen an einem Punkt $x_0$ bilden die \emph{fundamentale Gruppe}.
     \end{itemize}
     \vspace{2cm}
 \end{frame}
@@ -282,7 +302,7 @@
                 \item Typfamilie $\Term{x} : \Type{A} \vdash \Type{B(x)}$ type $\leftrightsquigarrow$ Faserung über \Type{A}
                 \item Dependent sum Typ \Type{\sum_{x:A} B(x)} $\leftrightsquigarrow$ Totalraum einer Faserung
                 
-                Beispiel: \[\Type{\text{Magma}} :\equiv \Type{\sum_{A:\Universe{}} (A\rightarrow A \rightarrow A)}\]
+                Beispiel: \[\Type{\text{Gruppoid}} :\equiv \Type{\sum_{A:\Universe{}} (A\rightarrow A \rightarrow A)}\]
             \end{itemize}
         \end{column}%
         \begin{column}{.30\textwidth}
@@ -330,6 +350,34 @@
     \end{definition}
 \end{frame}
 
+\begin{frame}{Der \glqq{}Stein von Rosette\grqq{} für HoTT}
+    \begin{tabular}{l l l l}
+        \toprule
+        Typen & Logik & Mengen & Homotopie\\
+        \midrule
+        $\Type{A}$ & Aussage & Menge & Raum\\
+        $\Term{a} : \Type{A}$ & Beweis & Element & Punkt\\
+        $\Type{B(x)}$ & Prädikat & Mengenfamilie & Faserung\\
+        $\Term{b(x)} : \Type{B(x)}$ & Bedingter Beweis & Elementfamilie & Sektion\\
+        $\Type{0}, \Type{1}$ & $\bot, \top$ & $\emptyset, \{\emptyset\}$ & $\emptyset, \star$\\
+        $\Type{A + B}$ & $A\vee B$ & Disjunkte Vereinigung & Coprodukt\\
+        $\Type{A \times B}$ & $A\wedge B$ & Menge von Paaren & Produktraum\\
+        $\Type{A \rightarrow B}$ & $A\Rightarrow B$ & Menge von Funktionen & Funktionsraum\\
+        $\Type{\sum_{(x:A)}B(x)}$ & $\exists_{x:A} B(x)$ & Disjunkte Summe & Totalraum\\
+        $\Type{\prod_{(x:A)}B(x)}$ & $\forall_{x:A} B(x)$ & Produkt & Raum der Sektionen\\
+        $\Type{\text{Id}_A}$ & Gleichheit ($=$) & $\{(x,x)\mid x\in A\}$ & Pfadraum $A^I$\\
+        \bottomrule
+    \end{tabular}
+\end{frame}
+
+\begin{frame}{Was gibt es noch?}
+    \begin{itemize}
+        \item HoTT und der $\lambda$-Kalkül
+        \item Higher inductive types
+        \item Beweistheorie in HoTT
+    \end{itemize}
+\end{frame}
+
 \sectionslide{Anwendungen \& Aktuelle Forschungsfragen}
 
 \begin{frame}{Anwendungen}
@@ -345,9 +393,76 @@
 \begin{frame}{Aktuelle Forschungsfragen}
     \begin{itemize}
         \item Informelle Typentheorie
-        \item Konstruktivität des Univalenzaxioms
-        \item Komplexitätstheorie?
+        \item Formalisierung der klassischen Mathematik in HoTT
+        \item Konstruktivität des Univalenzaxioms (Cubical Type Theory)
+        \item HoTT auf diskreten Räumen (wie $\mathbb{N}$) führt zu vielen \glqq{}unnötigen\grqq{} Identitätstermen
+        \begin{itemize}
+            \item Möglichkeit, diese zu kollabieren
+        \end{itemize} 
+        \item HoTT und Topoi
+        \begin{itemize}
+            \item Intuitionistische Higher Order Logic ist die interne Sprache von $1$-Topoi, HoTT könnte die von $(\infty, 1)$-Topoi sein
+        \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}[noframenumbering]{}
+    \thispagestyle{empty}
+    \begin{center}
+        \scalebox{10}{\ucmark}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Aktuelle Forschungsfragen: Komplexitätstheorie?}
+    \begin{itemize}
+        \item Wenn HoTT Grundlage der Mathematik sein kann, muss man mit ihr auch Komplexitätstheorie betreiben können
+        \item Klassische Komplexitätstheorie sehr \glqq{}mengenzentriert\grqq{}
+        \item HoTT eng verbunden mit funktionalen Programmiersprachen
+    \end{itemize}
+
+    \begin{itemize}
+        \item Mathematische Strukturen sind \glqq{}First Class Citizens\grqq{} in HoTT
+        \begin{itemize}
+            \item Codierung egal
+        \end{itemize}
+        \item Eher rekursionstheoretische Ansätze erforderlich~\cite{ctinctt}
+        \begin{itemize}
+            \item Maschinenunabhängige Komplexitätstheorie
+            \item Implizite Komplexitätstheorie~\cite{icc}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Aktuelle Forschungsfragen: Komplexitätstheorie?}
+    \makebox[\textwidth][c]{\begin{tikzpicture}
+
+        \draw[line width=7pt, maincolorMedium] (-2,0) -- (15,0);
+
+        \fill (0.8, -0.2) rectangle (1.2, 0.2);
+        \draw[-, line width=2pt] (1,-3) -- (1,0);
+        \draw[align=center] (1, -3.5) node {Begriff der\\\glqq{}Linearität\grqq{} in HoTT$^\star$};
+
+
+        \uncover<2->{\fill (4.8, -0.2) rectangle (5.2, 0.2);
+        \draw[-, line width=2pt] (5,-4) -- (5,0);
+        \draw (5, -4.5) node {Definition von Komplexitätsmaßen};}
+
+        
+        \uncover<3->{\fill (9.8, -0.2) rectangle (10.2, 0.2);
+        \draw[-, line width=2pt] (10,-2) -- (10,0);
+        \draw[align=center] (10, -2.5) node {Charakterisierung von sinnvollen\\Komplexitätsklassen und Hierarchien};}
+
+        
+        \uncover<4->{\fill (13.8, -0.2) rectangle (14.2, 0.2);
+        \draw[-, line width=2pt] (14,-5) -- (14,0);
+        \draw (9.5, -5.5) node {Charakterisierung von effizienter Berechenbarkeit~\cite{rtpoly}};}
+    \end{tikzpicture}}~\\[2em]
+    \tiny{$^\star$Danke an Prof. Thorsten Altenkirch~\cite{qtt1, qtt2}}
+\end{frame}
+
+\begin{frame}[standout]
+    \Huge Danke!\\[2em]
+    Fragen?
 \end{frame}
 
 \begin{frame}[allowframebreaks]
@@ -355,10 +470,4 @@
     \printbibliography[heading=none]
 \end{frame}
     
-
-\begin{frame}[standout]
-    \Huge Danke!\\[2em]
-    Fragen?
-\end{frame}
-
 \end{document}
