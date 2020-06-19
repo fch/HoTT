@@ -203,7 +203,7 @@
 \begin{frame}{Funktionstypen}
     \begin{itemize}
         \item $\rightarrow$-formation: Haben wir Typen \Type{A} und \Type{B} gegeben, gibt es einen Typen \Type{A\rightarrow B}.
-        \item $\rightarrow$-introduction: Haben wir im Kontext eines Terms $\Term{x} : \Type{A}$ einen Term $\Term{b(x)} : B$ gegeben, gibt es einen Term $\Term{\lambda x.b(x)} : \Type{A\rightarrow B}$. Formal:
+        \item $\rightarrow$-introduction: Haben wir im Kontext eines Terms $\Term{x} : \Type{A}$ einen Term $\Term{b(x)} : \Type{B}$ gegeben, gibt es einen Term $\Term{\lambda x.b(x)} : \Type{A\rightarrow B}$. Formal:
         \begin{displaymath}
             \prftree[r]{}
                 {\Context{\Gamma}, \Term{x} : \Type{A} \vdash \Term{b(x)} : \Type{B}}
@@ -264,9 +264,9 @@
 
 \sectionslide{Homotopietypentheorie}
 
-\begin{frame}{Path induction homotopisch interpretiert}
+\begin{frame}{Path induction \glqq{}homotopisch\grqq{} interpretiert}
     \begin{columns}[T] % align columns
-        \begin{column}{.60\textwidth}
+        \begin{column}{.6\textwidth}
             \begin{itemize}
                 \item Typ \Type{A} $\leftrightsquigarrow$ Raum \Type{A}
                 \item Term $\Term{a} : \Type{A}$ $\leftrightsquigarrow$ Punkt \Term{a} in \Type{A}
@@ -274,9 +274,10 @@
                 \item Term $\Term{p} : \Type{p =_{x =_{A} y} a}$ $\leftrightsquigarrow$ Homotopie \Term{h} von \Term{p} nach \Term{q} in \Type{A}
             \end{itemize}
         \end{column}%
-        \begin{column}{.30\textwidth}
+        \begin{column}{.4\textwidth}
+            \includegraphics[width=0.95\textwidth]{images/topology1.pdf}
         \end{column}%
-    \end{columns}~\\[1em]
+    \end{columns}~\\
     \begin{itemize}
         \item Symmetrie und Transitivität wird als Umkehrung und Komposition von Pfaden, Homotopien, höheren Homotopien... interpretiert.
         \item \href{https://arxiv.org/abs/0812.0298}{van den Berg/Garner} und \href{http://peterlefanulumsdaine.com/research/Lumsdaine-2010-Thesis.pdf}{Lumsdaine}: Typen haben die Struktur eines schwachen $\infty$-Gruppoiden
@@ -291,7 +292,9 @@
         \item Nein!
         \item Homotopie-Äquivalenzklassen von Schleifen an einem Punkt $x_0$ bilden die \emph{fundamentale Gruppe}.
     \end{itemize}
-    \vspace{2cm}
+    \begin{center}
+        \includegraphics[width=0.35\textwidth]{images/topology1.pdf}
+    \end{center}
 \end{frame}
 
 \begin{frame}{Weitere Typen -- mit homotopischer Interpretation}
@@ -306,6 +309,7 @@
             \end{itemize}
         \end{column}%
         \begin{column}{.30\textwidth}
+            \includegraphics[width=\textwidth]{images/topology2.pdf}
         \end{column}%
     \end{columns}
 \end{frame}
@@ -316,21 +320,22 @@
         \begin{column}{.60\textwidth}
             \begin{itemize}
                 \item Typfamilie $\Term{x} : \Type{A} \vdash \Type{B(x)}$ type $\leftrightsquigarrow$ Faserung über \Type{A}
-                \item Dependent function Typ \Type{\prod_{x:A}B(x)} $\leftrightsquigarrow$ Raum der Sektionen
+                \item Dependent function Typ \Type{\prod_{x:A}B(x)} $\leftrightsquigarrow$ Raum der Schnitte
                 
                 Beispiel: \[\Term{\text{swap}}:\Type{\prod_{A:\Universe{}}\prod_{B:\Universe{}}\prod_{C:\Universe{}}(A\rightarrow B\rightarrow C)\rightarrow (B\rightarrow A\rightarrow C)}\]
             \end{itemize}
         \end{column}%
         \begin{column}{.30\textwidth}
+            \includegraphics[width=\textwidth]{images/topology2.pdf}
         \end{column}%
     \end{columns}
 \end{frame}
 
-\begin{frame}{Zusammenziehbare Typen}
-    \begin{definition}{Zusammenziehbare Typen}{}
+\begin{frame}{Kontrahierbare Typen}
+    \begin{definition}{Kontrahierbare Typen}{}
         Es gibt einen eindeutigen Term vom Typ \Type{A} gdw.
         \[\Type{\sum_{a:A}\prod_{x:A} a=_{A}x}\]
-        bewohnt ist, bzw. wenn der Raum \Type{A} \emph{zusammenziehbar} ist.
+        bewohnt ist, bzw. wenn der Raum \Type{A} \emph{kontrahierbar} ist.
     \end{definition}
 \end{frame}
 
@@ -358,13 +363,13 @@
         $\Type{A}$ & Aussage & Menge & Raum\\
         $\Term{a} : \Type{A}$ & Beweis & Element & Punkt\\
         $\Type{B(x)}$ & Prädikat & Mengenfamilie & Faserung\\
-        $\Term{b(x)} : \Type{B(x)}$ & Bedingter Beweis & Elementfamilie & Sektion\\
+        $\Term{b(x)} : \Type{B(x)}$ & Bedingter Beweis & Elementfamilie & Schnitt\\
         $\Type{0}, \Type{1}$ & $\bot, \top$ & $\emptyset, \{\emptyset\}$ & $\emptyset, \star$\\
         $\Type{A + B}$ & $A\vee B$ & Disjunkte Vereinigung & Coprodukt\\
         $\Type{A \times B}$ & $A\wedge B$ & Menge von Paaren & Produktraum\\
         $\Type{A \rightarrow B}$ & $A\Rightarrow B$ & Menge von Funktionen & Funktionsraum\\
         $\Type{\sum_{(x:A)}B(x)}$ & $\exists_{x:A} B(x)$ & Disjunkte Summe & Totalraum\\
-        $\Type{\prod_{(x:A)}B(x)}$ & $\forall_{x:A} B(x)$ & Produkt & Raum der Sektionen\\
+        $\Type{\prod_{(x:A)}B(x)}$ & $\forall_{x:A} B(x)$ & Produkt & Raum der Schnitte\\
         $\Type{\text{Id}_A}$ & Gleichheit ($=$) & $\{(x,x)\mid x\in A\}$ & Pfadraum $A^I$\\
         \bottomrule
     \end{tabular}

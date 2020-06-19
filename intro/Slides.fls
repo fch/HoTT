@@ -678,6 +678,9 @@ INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/pxfonts/pxb.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/vf/public/pxfonts/pxb.vf
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/pxfonts/rpxpplb.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/pxfonts/rpxb.tfm
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology1.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology1.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology1.pdf
 INPUT c:/texlive/2018/texmf-dist/fonts/vf/public/eulervm/zeusm7.vf
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy7.tfm
@@ -689,6 +692,13 @@ INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/pxfonts/rpxi.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/vf/public/eulervm/zeuex10.vf
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/euler/euex10.tfm
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology1.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology1.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology2.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology2.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology2.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology2.pdf
+INPUT c:/Users/Florian/Code/HoTT/intro/images/topology2.pdf
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/txfonts/txss.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/eulervm/zeurm10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/eulervm/zeusm10.tfm
