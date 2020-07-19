@@ -96,6 +96,7 @@
         \hfill%
         \begin{column}{.30\textwidth}
         \begin{center}
+            \scalebox{.3}{\copyright{} Emily Riehl, persönliche Genehmigung}
             \includegraphics[width=0.9\textwidth]{images/riehl}\\[2pt]
             Emily Riehl
             \tiny{
@@ -113,15 +114,20 @@
 \begin{frame}{Konstruktivität}
     \begin{itemize}
         \item Law of excluded middle (LEM) wichtiges Axiom in der klassischen Mathematik
-        \item $\vdash \varphi \vee \neg \varphi$
-        \item Ermöglicht Widerspruchsbeweise
+        \begin{itemize}
+            \item $\vdash \varphi \vee \neg \varphi$
+            \item Ermöglicht Widerspruchsbeweise
+        \end{itemize}
         \item Konstruktive Logik verzichtet auf LEM
         \item Dadurch wird durch einen Beweis immer ein \glqq{}Witness\grqq{} erzeugt
         \item Keine wirkliche Einschränkung, da man LEM jederzeit als Annahme hinzunehmen kann
+        \item Hilft \glqq{}mentaler Hygiene\grqq{}: (Wo) brauche ich LEM wirklich?
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundaussagen\grqq{}}
+    \Context{\Gamma} ist der \emph{Kontext}, der die Typen aller vorkommenen Variablen deklariert.
+
     Die vier Grundformen (\glqq{}judgements\grqq{}) der \glqq{}wohlgeformten Formeln\grqq{} der Dependent Type Theory sind:
     \begin{center}
         \begin{tabular}{l l l}
@@ -132,14 +138,13 @@
             $\Context{\Gamma}, \Term{x} : \Type{A} \vdash \Term{b(x)} : \Type{B(x)}$ & \glqq{}\Term{b(x)} ist eine Termfamilie\grqq{}&$\Term{n} : \Type{\N} \vdash \Term{\vec{0}} : \Type{\R^n}$\\
         \end{tabular}
     \end{center}
-    \Context{\Gamma} ist der \emph{Kontext}, der die Typen aller vorkommenen Variablen deklariert.
 
     \emph{Universum:} Typ, dessen Elemente Typen sind. Bilden Hierarchie
     \[\Universe{0} : \Universe{1} : \Universe{2} : \cdots\] 
 \end{frame}
 
 
-\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelarten\grqq{} I}
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelschemata\grqq{} I}
     
     \begin{itemize}
         \item Name: $x$-formation rules
@@ -156,7 +161,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelarten\grqq{} II}
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelschemata\grqq{} II}
     
     \begin{itemize}
         \item Name: $x$-introduction rules
@@ -173,7 +178,7 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelarten\grqq{} III}
+\begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelschemata\grqq{} III}
     \begin{itemize}
         \item Name: $x$-elimination rules
         \item Beschreibung: Haben wir einen Term $\Term{p} : \Type{A\times B}$ gegeben, gibt es Terme $\Term{\text{pr}_1(p)} : \Type{A}$ und $\Term{\text{pr}_2(p)} : \Type{B}$.
@@ -242,7 +247,7 @@
         \item $=$-formation: Haben wir einen Typ \Type{A} und zwei Terme $\Term{x},\Term{y} : \Type{A}$ gegeben, gibt es einen Typ $\Type{x =_{A} y}$.
         \item $=$-introduction: Haben wir einen Term $\Term{x}:\Type{A}$ gegeben, so gibt es einen Term $\Term{\text{refl}_x} : \Type{x =_{A} x}$.
     \end{itemize}
-    Elimination rule via path induction:
+    Elimination rule für $\Type{x =_{A} y}$ via path induction:
     
     Haben wir eine Typfamilie $\Context{\Gamma}, \Term{x}, \Term{y} : \Type{A}, \Term{p} : \Type{x =_{A} y} \vdash \Type{B(x, y, p)}$ gegeben und wollen einen Term von \Type{B(x, y, p)} konstruieren, reicht es anzunehmen, dass \Term{y} \Term{x} und \Term{p} \Term{\text{refl}_x} ist.
 \end{frame}
@@ -264,11 +269,31 @@
 
 \sectionslide{Homotopietypentheorie}
 
+\begin{frame}{Der \glqq{}Stein von Rosette\grqq{} für HoTT}
+    \begin{tabular}{l l l l}
+        \toprule
+        Typen & Logik & Mengen & Homotopie\\
+        \midrule
+        $\Type{A}$ & Aussage & Menge & Raum\\
+        $\Term{a} : \Type{A}$ & Beweis & Element & Punkt\\
+        $\Type{B(x)}$ & Prädikat & Mengenfamilie & Faserung\\
+        $\Term{b(x)} : \Type{B(x)}$ & Bedingter Beweis & Elementfamilie & Schnitt\\
+        $\Type{0}, \Type{1}$ & $\bot, \top$ & $\emptyset, \{\emptyset\}$ & $\emptyset, \star$\\
+        $\Type{A + B}$ & $A\vee B$ & Disjunkte Vereinigung & Coprodukt\\
+        $\Type{A \times B}$ & $A\wedge B$ & Menge von Paaren & Produktraum\\
+        $\Type{A \rightarrow B}$ & $A\Rightarrow B$ & Menge von Funktionen & Funktionsraum\\
+        $\Type{\sum_{(x:A)}B(x)}$ & $\exists_{x:A} B(x)$ & Disjunkte Summe & Totalraum\\
+        $\Type{\prod_{(x:A)}B(x)}$ & $\forall_{x:A} B(x)$ & Produkt & Raum der Schnitte\\
+        $\Type{\text{Id}_A}$ & Gleichheit ($=$) & $\{(x,x)\mid x\in A\}$ & Pfadraum $A^I$\\
+        \bottomrule
+    \end{tabular}
+\end{frame}
+
 \begin{frame}{Path induction \glqq{}homotopisch\grqq{} interpretiert}
     \begin{columns}[T] % align columns
         \begin{column}{.6\textwidth}
             \begin{itemize}
-                \item Typ \Type{A} $\leftrightsquigarrow$ Raum \Type{A}
+                \item Typ \Type{A} $\leftrightsquigarrow$ (Topologischer) Raum \Type{A}
                 \item Term $\Term{a} : \Type{A}$ $\leftrightsquigarrow$ Punkt \Term{a} in \Type{A}
                 \item Term $\Term{p} : \Type{x =_{A} y}$ $\leftrightsquigarrow$ Pfad \Term{p} von \Term{x} nach \Term{y} in \Type{A}
                 \item Term $\Term{p} : \Type{p =_{x =_{A} y} a}$ $\leftrightsquigarrow$ Homotopie \Term{h} von \Term{p} nach \Term{q} in \Type{A}
@@ -342,7 +367,7 @@
 \begin{frame}{Typenäquivalenz}
     \begin{definition}{Typenäquivalenz}{}
         Zwei Typen \Type{A} und \Type{B} sind \emph{äquivalent}, wenn der Typ
-        \[\Type{A\simeq B} :\equiv \Type{\sum_{f:A\rightarrow B}\left(\sum_{g:B\rightarrow A}\prod_{a:A}g(f(a))=_{A}a\right)\times\left(\sum_{h:B\rightarrow A}\prod_{b:B}f(h(b))=_{B}b\right)}\]
+        \[\Type{A\simeq B} :\equiv \Type{\sum_{h:A\rightarrow B}\left(\sum_{f:B\rightarrow A}\prod_{a:A}f(h(a))=_{A}a\right)\times\left(\sum_{g:B\rightarrow A}\prod_{b:B}h(g(b))=_{B}b\right)}\]
         bewohnt ist.
     \end{definition}
 \end{frame}
@@ -355,30 +380,18 @@
     \end{definition}
 \end{frame}
 
-\begin{frame}{Der \glqq{}Stein von Rosette\grqq{} für HoTT}
-    \begin{tabular}{l l l l}
-        \toprule
-        Typen & Logik & Mengen & Homotopie\\
-        \midrule
-        $\Type{A}$ & Aussage & Menge & Raum\\
-        $\Term{a} : \Type{A}$ & Beweis & Element & Punkt\\
-        $\Type{B(x)}$ & Prädikat & Mengenfamilie & Faserung\\
-        $\Term{b(x)} : \Type{B(x)}$ & Bedingter Beweis & Elementfamilie & Schnitt\\
-        $\Type{0}, \Type{1}$ & $\bot, \top$ & $\emptyset, \{\emptyset\}$ & $\emptyset, \star$\\
-        $\Type{A + B}$ & $A\vee B$ & Disjunkte Vereinigung & Coprodukt\\
-        $\Type{A \times B}$ & $A\wedge B$ & Menge von Paaren & Produktraum\\
-        $\Type{A \rightarrow B}$ & $A\Rightarrow B$ & Menge von Funktionen & Funktionsraum\\
-        $\Type{\sum_{(x:A)}B(x)}$ & $\exists_{x:A} B(x)$ & Disjunkte Summe & Totalraum\\
-        $\Type{\prod_{(x:A)}B(x)}$ & $\forall_{x:A} B(x)$ & Produkt & Raum der Schnitte\\
-        $\Type{\text{Id}_A}$ & Gleichheit ($=$) & $\{(x,x)\mid x\in A\}$ & Pfadraum $A^I$\\
-        \bottomrule
-    \end{tabular}
-\end{frame}
-
 \begin{frame}{Was gibt es noch?}
     \begin{itemize}
         \item HoTT und der $\lambda$-Kalkül
         \item Higher inductive types
+        
+        Typkonstruktoren können auch (höhere) Pfade erzeugen. Intervalltyp $\Type{I}$:
+        \begin{itemize}
+            \item Punkt $\Term{0_I} : \Type{I}$
+            \item Punkt $\Term{1_I} : \Type{I}$
+            \item Pfad $\Term{\text{seg}} : \Type{0_I =_I 1_I}$
+        \end{itemize}
+        Hausaufgabe: Kreis als Higher inductive type definieren
         \item Beweistheorie in HoTT
     \end{itemize}
 \end{frame}
@@ -419,21 +432,40 @@
 \end{frame}
 
 \begin{frame}{Aktuelle Forschungsfragen: Komplexitätstheorie?}
+    \begin{simplebox}
+        \Large
+        \begin{center}
+            Wenn HoTT Grundlage der Mathematik sein kann, muss man mit ihr auch Komplexitätstheorie betreiben können!
+        \end{center}
+    \end{simplebox}
     \begin{itemize}
-        \item Wenn HoTT Grundlage der Mathematik sein kann, muss man mit ihr auch Komplexitätstheorie betreiben können
         \item Klassische Komplexitätstheorie sehr \glqq{}mengenzentriert\grqq{}
         \item HoTT eng verbunden mit funktionalen Programmiersprachen
     \end{itemize}
+\end{frame}
 
+\begin{frame}{Motivierende Fragen}
+    \begin{itemize}
+        \item Ist die Korrektheit meines Haskellprogrammes effizient verifizierbar?
+        \item Kann ich verifizieren, dass mein Haskellprogramm effizient ist?
+        \item Ist ein Problem effizient lösbar und wie sieht der Algorithmus aus, der das Problem effizient löst?
+        \item Kann ich die Daten meiner Datenbank effizient und korrekt migrieren?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mögliche Ausgangspunkte}
     \begin{itemize}
         \item Mathematische Strukturen sind \glqq{}First Class Citizens\grqq{} in HoTT
         \begin{itemize}
-            \item Codierung egal
+            \item Kodierung egal
         \end{itemize}
         \item Eher rekursionstheoretische Ansätze erforderlich~\cite{ctinctt}
         \begin{itemize}
             \item Maschinenunabhängige Komplexitätstheorie
             \item Implizite Komplexitätstheorie~\cite{icc}
+            \begin{itemize}
+                \item Wird schon für lineare Typentheorien angewendet
+            \end{itemize}
         \end{itemize}
     \end{itemize}
 \end{frame}
