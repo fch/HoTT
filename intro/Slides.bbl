@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 2.9 $
+% $ biblatex bbl format version 3.1 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -35,7 +35,7 @@
       \strng{authorfullhash}{b5507ca1177b01ddc89cb764e5fbf287}
       \field{labelalpha}{Atk18}
       \field{sortinit}{A}
-      \field{sortinithash}{d77c7cdd82ff690d4c3ef13216f92f0b}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Syntax and Semantics of Quantitative Type Theory}
@@ -44,23 +44,55 @@
       \verb https://doi.org/10.1145/3209108.3209189
       \endverb
     \endentry
+    \entry{rtpoly}{misc}{}
+      \name{author}{2}{}{%
+        {{hash=e15f39ff3936eb5c1f277bcb0fb90127}{%
+           family={Bellatoni},
+           familyi={B\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6d0042ba6060405425561c0184e8ece1}{%
+           family={Cook},
+           familyi={C\bibinitperiod},
+           given={Stephen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{a774087e4ee7ddd65251690bde7d307c}
+      \strng{fullhash}{a774087e4ee7ddd65251690bde7d307c}
+      \strng{bibnamehash}{a774087e4ee7ddd65251690bde7d307c}
+      \strng{authorbibnamehash}{a774087e4ee7ddd65251690bde7d307c}
+      \strng{authornamehash}{a774087e4ee7ddd65251690bde7d307c}
+      \strng{authorfullhash}{a774087e4ee7ddd65251690bde7d307c}
+      \field{labelalpha}{BC}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A New Recursion-Theoretic Characterization of the Polytime Functions}
+      \verb{urlraw}
+      \verb https://www.cs.toronto.edu/~sacook/homepage/ptime.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.cs.toronto.edu/~sacook/homepage/ptime.pdf
+      \endverb
+    \endentry
     \entry{ctinctt}{article}{}
       \name{author}{1}{}{%
-        {{hash=7f169c6d19839ad7b11abe55a33c5a3b}{%
+        {{hash=52706ec69f08c8709bb1d8f762c1bc80}{%
            family={Constable},
            familyi={C\bibinitperiod},
            given={R.L.},
            giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{7f169c6d19839ad7b11abe55a33c5a3b}
-      \strng{fullhash}{7f169c6d19839ad7b11abe55a33c5a3b}
-      \strng{bibnamehash}{7f169c6d19839ad7b11abe55a33c5a3b}
-      \strng{authorbibnamehash}{7f169c6d19839ad7b11abe55a33c5a3b}
-      \strng{authornamehash}{7f169c6d19839ad7b11abe55a33c5a3b}
-      \strng{authorfullhash}{7f169c6d19839ad7b11abe55a33c5a3b}
+      \strng{namehash}{52706ec69f08c8709bb1d8f762c1bc80}
+      \strng{fullhash}{52706ec69f08c8709bb1d8f762c1bc80}
+      \strng{bibnamehash}{52706ec69f08c8709bb1d8f762c1bc80}
+      \strng{authorbibnamehash}{52706ec69f08c8709bb1d8f762c1bc80}
+      \strng{authornamehash}{52706ec69f08c8709bb1d8f762c1bc80}
+      \strng{authorfullhash}{52706ec69f08c8709bb1d8f762c1bc80}
       \field{labelalpha}{Con95}
       \field{sortinit}{C}
-      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Leivant D. (eds) Logic and Computational Complexity}
@@ -72,21 +104,21 @@
     \endentry
     \entry{icc}{article}{}
       \name{author}{1}{}{%
-        {{hash=c70df568d3867558f6fb4601e8155141}{%
+        {{hash=c31036d9a94c8f49a9984cbc5f10e44a}{%
            family={Lago},
            familyi={L\bibinitperiod},
            given={U.\bibnamedelimi Dal},
            giveni={U\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
       }
-      \strng{namehash}{c70df568d3867558f6fb4601e8155141}
-      \strng{fullhash}{c70df568d3867558f6fb4601e8155141}
-      \strng{bibnamehash}{c70df568d3867558f6fb4601e8155141}
-      \strng{authorbibnamehash}{c70df568d3867558f6fb4601e8155141}
-      \strng{authornamehash}{c70df568d3867558f6fb4601e8155141}
-      \strng{authorfullhash}{c70df568d3867558f6fb4601e8155141}
+      \strng{namehash}{c31036d9a94c8f49a9984cbc5f10e44a}
+      \strng{fullhash}{c31036d9a94c8f49a9984cbc5f10e44a}
+      \strng{bibnamehash}{c31036d9a94c8f49a9984cbc5f10e44a}
+      \strng{authorbibnamehash}{c31036d9a94c8f49a9984cbc5f10e44a}
+      \strng{authornamehash}{c31036d9a94c8f49a9984cbc5f10e44a}
+      \strng{authorfullhash}{c31036d9a94c8f49a9984cbc5f10e44a}
       \field{labelalpha}{Lag12}
       \field{sortinit}{L}
-      \field{sortinithash}{2c7981aaabc885868aba60f0c09ee20f}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Bezhanishvili N., Goranko V. (eds) Lectures on Logic and Computation}
@@ -112,7 +144,7 @@
       \strng{authorfullhash}{2c2c2406f3f7d52d846f02ca883d9b3d}
       \field{labelalpha}{McB}
       \field{sortinit}{M}
-      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{I Got Plenty o' Nuttin'}
@@ -123,36 +155,9 @@
       \verb https://personal.cis.strath.ac.uk/conor.mcbride/PlentyO-CR.pdf
       \endverb
     \endentry
-    \entry{rtpoly}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=970a0349da6916637d5e8e163628a621}{%
-           family={Stephen\bibnamedelima Bellatoni},
-           familyi={S\bibinitperiod\bibinitdelim B\bibinitperiod},
-           given={Stephen\bibnamedelima Cook},
-           giveni={S\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \strng{namehash}{970a0349da6916637d5e8e163628a621}
-      \strng{fullhash}{970a0349da6916637d5e8e163628a621}
-      \strng{bibnamehash}{970a0349da6916637d5e8e163628a621}
-      \strng{authorbibnamehash}{970a0349da6916637d5e8e163628a621}
-      \strng{authornamehash}{970a0349da6916637d5e8e163628a621}
-      \strng{authorfullhash}{970a0349da6916637d5e8e163628a621}
-      \field{labelalpha}{Ste}
-      \field{sortinit}{S}
-      \field{sortinithash}{322b1d5276f2f6c1bccdcd15920dbee6}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{A New Recursion-Theoretic Characterization of the Polytime Functions}
-      \verb{urlraw}
-      \verb https://www.cs.toronto.edu/~sacook/homepage/ptime.pdf
-      \endverb
-      \verb{url}
-      \verb https://www.cs.toronto.edu/~sacook/homepage/ptime.pdf
-      \endverb
-    \endentry
     \entry{hottbook}{book}{}
       \name{author}{1}{}{%
-        {{hash=f7bcbe6c4d908d64433c35d34707dd1c}{%
+        {{hash=eb3cec164c1f4cb5cd7394d2677e2a1c}{%
            family={{Univalent Foundations Program}},
            familyi={U\bibinitperiod},
            given={The},
@@ -164,15 +169,15 @@
       \list{publisher}{1}{%
         {\url{https://homotopytypetheory.org/book}}%
       }
-      \strng{namehash}{f7bcbe6c4d908d64433c35d34707dd1c}
-      \strng{fullhash}{f7bcbe6c4d908d64433c35d34707dd1c}
-      \strng{bibnamehash}{f7bcbe6c4d908d64433c35d34707dd1c}
-      \strng{authorbibnamehash}{f7bcbe6c4d908d64433c35d34707dd1c}
-      \strng{authornamehash}{f7bcbe6c4d908d64433c35d34707dd1c}
-      \strng{authorfullhash}{f7bcbe6c4d908d64433c35d34707dd1c}
+      \strng{namehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{fullhash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{bibnamehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{authorbibnamehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{authornamehash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
+      \strng{authorfullhash}{eb3cec164c1f4cb5cd7394d2677e2a1c}
       \field{labelalpha}{Uni13}
       \field{sortinit}{U}
-      \field{sortinithash}{36a2444f5238e0dcf4bb59704df6624d}
+      \field{sortinithash}{77a6935510e008adcf5b555e7b4f0711}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Homotopy Type Theory: Univalent Foundations of Mathematics}

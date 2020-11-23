@@ -147,7 +147,7 @@
 \begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelschemata\grqq{} I}
     
     \begin{itemize}
-        \item Name: $x$-formation rules
+        \item Name: $\times$-formation rules
 
         \item Beschreibung: Haben wir Typen \Type{A} und \Type{B} gegeben, gibt es einen Produkttypen \Type{A\times B}.
 
@@ -164,7 +164,7 @@
 \begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelschemata\grqq{} II}
     
     \begin{itemize}
-        \item Name: $x$-introduction rules
+        \item Name: $\times$-introduction rules
 
         \item Beschreibung: Haben wir Terme $\Term{a} : \Type{A}$ und $\Term{b} : \Type{B}$ gegeben, gibt es einen Term $\Term{(a, b)} : \Type{A\times B}$.
 
@@ -180,7 +180,7 @@
 
 \begin{frame}{Dependent Type Theory: Die vier \glqq{}Grundregelschemata\grqq{} III}
     \begin{itemize}
-        \item Name: $x$-elimination rules
+        \item Name: $\times$-elimination rules
         \item Beschreibung: Haben wir einen Term $\Term{p} : \Type{A\times B}$ gegeben, gibt es Terme $\Term{\text{pr}_1(p)} : \Type{A}$ und $\Term{\text{pr}_2(p)} : \Type{B}$.
         \item Formal: 
 
@@ -233,7 +233,7 @@
     \begin{example}{}{}
         \textbf{Aussage:} Für beliebige Typen \Type{P} und \Type{Q} gibt es den Term \[\Term{\text{modus-ponens}} : \Type{P\times (P\rightarrow Q) \rightarrow Q}.\]
 
-        \textbf{Beweis:} Mit $\rightarrow$-introduction aus Term $\Term{x} : \Type{P\times (P\rightarrow Q)}$ einen Term aus \Type{Q} generieren. $x$-elimination liefert uns $\Term{\text{pr}_1(x)} : \Type{P}$ und $\Term{\text{pr}_2(x)} : \Type{P\rightarrow Q}$.\\$\rightarrow$-elimination liefert $\Term{(\text{pr}_2(x))(\text{pr}_1(x))} : \Type{Q}$.
+        \textbf{Beweis:} Mit $\rightarrow$-introduction aus Term $\Term{x} : \Type{P\times (P\rightarrow Q)}$ einen Term aus \Type{Q} generieren. $\times$-elimination liefert uns $\Term{\text{pr}_1(x)} : \Type{P}$ und $\Term{\text{pr}_2(x)} : \Type{P\rightarrow Q}$.\\$\rightarrow$-elimination liefert $\Term{(\text{pr}_2(x))(\text{pr}_1(x))} : \Type{Q}$.
 
         Somit: $\Term{\text{modus-ponens}} :\equiv \Term{\lambda x.(\text{pr}_2(x))(\text{pr}_1(x))}$.\hfill{\color{maincolor}$\blacksquare$}
     \end{example}
@@ -310,11 +310,11 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{\glqq{}Indiscernibility of identicals\grqq{}}
-    \textbf{Beantwortete offene Frage der Beweistheorie:}
+\begin{frame}{Extensional vs. Intensional und UIP}
+    \textbf{Frage:}
     \begin{itemize}
-        \item \glqq{}Indiscernibility of identicals\grqq{}: Wenn zwei Beweise $p$ und $q$ beide $A$ zeigen, kann man dann immer $p = q$ zeigen?
-        \item Nein!
+        \item \glqq{}Uniqueness of identity proofs\grqq{} (UIP): Wenn zwei Beweise $p$ und $q$ beide $A$ zeigen, gilt dann immer $p = q$?
+        \item Extensional: Ja, Intensional (hier): Nein
         \item Homotopie-Äquivalenzklassen von Schleifen an einem Punkt $x_0$ bilden die \emph{fundamentale Gruppe}.
     \end{itemize}
     \begin{center}
@@ -391,7 +391,7 @@
             \item Punkt $\Term{1_I} : \Type{I}$
             \item Pfad $\Term{\text{seg}} : \Type{0_I =_I 1_I}$
         \end{itemize}
-        Hausaufgabe: Kreis als Higher inductive type definieren
+        Hausaufgabe: Kreis als higher inductive type definieren
         \item Beweistheorie in HoTT
     \end{itemize}
 \end{frame}
